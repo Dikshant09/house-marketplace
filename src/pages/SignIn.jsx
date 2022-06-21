@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as ArrowRightIcon } from "../assets/svg/keyboardArrowRightIcon.svg";
 import visibilityIcon from "../assets/svg/visibilityIcon.svg";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { toast } from 'react-toastify';
 
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -16,13 +18,34 @@ const SignIn = () => {
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    const {name, value} = e.target;
+    const { name, value } = e.target;
 
     setFormData((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: value,
     }));
-  
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const auth = getAuth();
+
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      const user = userCredential.user;
+      if (user) {
+        toast.success('Signed In Successfully');
+        navigate("/");
+      }
+    } catch (error) {
+      toast.error('Bad User Credentials');
+    }
   };
 
   return (
@@ -32,7 +55,7 @@ const SignIn = () => {
           <p className="pageHeader">Welcome Back!</p>
         </header>
         <main>
-          <form>
+          <form onSubmit={handleSubmit}>
             <input
               type="email"
               className="emailInput"
@@ -71,7 +94,9 @@ const SignIn = () => {
             </div>
           </form>
           {/* Google OAuth Component */}
-          <Link to="/sign-up" className="registerLink">Sign Up Instead</Link>
+          <Link to="/sign-up" className="registerLink">
+            Sign Up Instead
+          </Link>
         </main>
       </div>
     </>

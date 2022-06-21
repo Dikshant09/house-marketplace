@@ -2,6 +2,15 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as ArrowRightIcon } from "../assets/svg/keyboardArrowRightIcon.svg";
 import visibilityIcon from "../assets/svg/visibilityIcon.svg";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+  updateCurrentUser,
+} from "firebase/auth";
+import {setDoc, doc, serverTimestamp } from 'firebase/firestore';
+import { db } from "../firebase.config";
+import { toast } from 'react-toastify';
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -17,13 +26,42 @@ const SignUp = () => {
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    const {name, value} = e.target;
+    const { name, value } = e.target;
 
     setFormData((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: value,
     }));
-  
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const auth = getAuth();
+
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      const user = userCredential.user;
+
+      updateProfile(auth.currentUser, {
+        displayName: name,
+      });
+
+      const formDataCopy = {...formData};
+      delete formDataCopy.password
+      formDataCopy.timestamp = serverTimestamp();
+
+      await setDoc(doc(db, 'users', user.uid), formDataCopy);
+      toast.success('Signed Up Successfully');
+      navigate("/");
+    } catch (error) {
+      toast.error('Something went wrong with registeration');
+    }
   };
 
   return (
@@ -33,7 +71,7 @@ const SignUp = () => {
           <p className="pageHeader">Welcome Back!</p>
         </header>
         <main>
-          <form>
+          <form onSubmit={handleSubmit}>
             <input
               type="text"
               className="nameInput"
@@ -80,7 +118,9 @@ const SignUp = () => {
             </div>
           </form>
           {/* Google OAuth Component */}
-          <Link to="/sign-in" className="registerLink">Sign In Instead</Link>
+          <Link to="/sign-in" className="registerLink">
+            Sign In Instead
+          </Link>
         </main>
       </div>
     </>
