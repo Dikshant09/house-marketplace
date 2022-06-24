@@ -1,5 +1,4 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { getAuth } from 'firebase/auth';
 import { useAuthStatus } from '../hooks/useAuthStatus.js';
 import Spinner from "./Spinner.jsx";
 

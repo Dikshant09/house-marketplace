@@ -6,7 +6,6 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   updateProfile,
-  updateCurrentUser,
 } from "firebase/auth";
 import {setDoc, doc, serverTimestamp } from 'firebase/firestore';
 import { db } from "../firebase.config";

@@ -1,5 +1,5 @@
 import React from "react";
-import { createSearchParams, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { doc, setDoc, getDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase.config";
@@ -36,7 +36,7 @@ const OAuth = () => {
         } Successfully!`
       );
 
-      navigate('/');
+      navigate("/");
     } catch (error) {
       toast.error(
         `Couldn't sign${location.pathname === "/sign-up" ? "up " : "in "}!`
