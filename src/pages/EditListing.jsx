@@ -170,6 +170,11 @@ const EditListing = () => {
         // Listen for state changes, errors, and completion of the upload.
         uploadTask.on(
           "state_changed",
+          (snapshot) => {
+            // eslint-disable-next-line
+            const progress =
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          },
           (error) => {
             reject(error);
           },
