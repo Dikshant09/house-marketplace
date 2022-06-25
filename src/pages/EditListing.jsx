@@ -139,7 +139,6 @@ const EditListing = () => {
 
       location = data.features.length === 0 ? undefined : address;
 
-      console.log(location);
       if (location === undefined || location.includes("undefined")) {
         setLoading(false);
         toast.error("Please enter a correct location");
@@ -477,7 +476,7 @@ const EditListing = () => {
             required
           />
           <button className="primaryButton createListngButton" type="submit">
-            Create Listing
+            Save Changes
           </button>
         </form>
       </main>
