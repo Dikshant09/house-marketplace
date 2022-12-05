@@ -158,7 +158,7 @@ const Listing = () => {
             >
             Contact LandLord
           </Link>
-          { !purchase ?           
+          { auth.currentUser && (!purchase ?           
             <button
             className="primaryButton"
             onClick = {handlePurchaseClick}
@@ -169,7 +169,7 @@ const Listing = () => {
             : 
             (<h2 className="primaryButton" style={{marginBottom: '20px', width: '35%'}}>
               <StripePayments listing={listing} listing_id ={listing_id} userName={auth.currentUser.displayName}/>
-            </h2>)
+            </h2>))
           }
           </div>
         )}
