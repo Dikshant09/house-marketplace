@@ -11,6 +11,7 @@
 - Node v10+
 - Configured .env file
 - Google Account
+- Stripe Account
 
 ## How to run
 
