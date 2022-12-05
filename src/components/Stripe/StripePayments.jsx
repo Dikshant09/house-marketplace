@@ -3,7 +3,8 @@ import React from 'react'
 const StripePayments = ({ listing, listing_id, userName }) => {
     const money = (listing.offer ? listing.discountedPrice : listing.regularPrice);
     const checkOut = () => {
-        fetch(`${process.env.REACT_APP_BACKEND_URL}/create-checkout-session`, {
+        // fetch(`${process.env.REACT_APP_BACKEND_URL}/create-checkout-session`, {
+        fetch(`https://kind-pink-cockroach-veil.cyclic.app/create-checkout-session`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
