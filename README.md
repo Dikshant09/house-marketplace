@@ -5,6 +5,9 @@
 - Using Google Geocoding API to get Coordinates for map plotting
 - Stripe API is used to handle payments. 
 
+<b>Backend : </b>
+- [Backend Repo](https://github.com/Dikshant09/house-marketplace-backend-stripe-payments) 
+- [Live Link](https://kind-pink-cockroach-veil.cyclic.app/)
 
 ## Requirements
 
@@ -26,9 +29,6 @@ REACT_APP_GEOCODE_API_KEY = pk.asfe...
 REACT_APP_BACKEND_URL = "https://backend_app_url.com"
 
 ```
-My backend implementation
-- [Github](https://github.com/Dikshant09/house-marketplace-backend-stripe-payments)
-- [Live](https://kind-pink-cockroach-veil.cyclic.app/)
 
 2. Install dependencies and start the server
 
