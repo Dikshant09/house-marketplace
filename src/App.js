@@ -14,6 +14,9 @@ import CreateListing from "./pages/CreateListing";
 import Listing from "./pages/Listing";
 import Contact from "./pages/Contact";
 import EditListing from "./pages/EditListing";
+import StripePayments from "./components/Stripe/StripePayments";
+import FailedPayment from "./components/Stripe/FailedPayment";
+import SuccessFulPayment from "./components/Stripe/SuccessFulPayment";
 
 function App() {
   return (
@@ -36,6 +39,10 @@ function App() {
 
         <Route path='/edit-listing/:listingId' element={<EditListing />} />
         <Route path='/create-listing' element={<CreateListing />} />
+        
+        <Route path='/payment/:id' element={<StripePayments />} />
+        <Route path='/payment/:id/failed' element={<FailedPayment />} />
+        <Route path='/payment/:id/successful' element={<SuccessFulPayment />} />
       </Routes>
       <ToastContainer />
     </Router>

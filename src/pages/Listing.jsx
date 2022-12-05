@@ -14,8 +14,10 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import StripePayments from "../components/Stripe/StripePayments";
 
 const Listing = () => {
+  const [purchase, setPurchase] = useState(false);
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(true);
   const [shareLinkCopied, setShareLinkCopied] = useState(false);
@@ -42,6 +44,15 @@ const Listing = () => {
 
   if (loading) {
     return <Spinner />;
+  }
+
+  const listing_id = window.location.href.split('/').pop();
+
+  const handlePurchaseClick = (e) => {
+    e.preventDefault();
+
+    setPurchase((prevState) =>  !prevState);
+    toast.success('Tip Use : 4242.... for testing payments');
   }
 
   return (
@@ -139,12 +150,28 @@ const Listing = () => {
         </div>
 
         {auth.currentUser?.uid !== listing.userRef && (
+          <div style={{display: 'flex', flexWrap: 'wrap'}}>
           <Link
             to={`/contact/${listing.userRef}?listingName=${listing.name}`}
             className="primaryButton"
-          >
+            style={{marginBottom: '20px', width: '35%'}}
+            >
             Contact LandLord
           </Link>
+          { auth.currentUser && (!purchase ?           
+            <button
+            className="primaryButton"
+            onClick = {handlePurchaseClick}
+            style={{marginBottom: '20px', width: '35%'}}
+              >
+              Purchase Now
+            </button> 
+            : 
+            (<h2 className="primaryButton" style={{marginBottom: '20px', width: '35%'}}>
+              <StripePayments listing={listing} listing_id ={listing_id} userName={auth.currentUser.displayName}/>
+            </h2>))
+          }
+          </div>
         )}
       </div>
     </main>

@@ -302,7 +302,7 @@ button {
     margin-bottom: 10rem;
   }
 }
-@media (max-height: 536) {
+@media (max-height: 536px) {
   .explore {
     margin-bottom: 10rem;
   }
@@ -832,4 +832,22 @@ button {
   margin-left: 1rem;
   font-size: 0.8rem;
   opacity: 0.75;
+}
+
+.successFulPayment{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: #ffffff;
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.2);
+}
+
+.pageContainer{
+  margin-bottom: 10rem;
 }

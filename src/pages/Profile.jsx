@@ -147,7 +147,7 @@ const Profile = () => {
 
         <div className="profileCard">
           <input
-            type="text"
+            type="email"
             name="name"
             className={!changeDetails ? "profileName" : "profileNameActive"}
             disabled={!changeDetails}
