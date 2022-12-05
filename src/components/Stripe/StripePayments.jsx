@@ -3,7 +3,7 @@ import React from 'react'
 const StripePayments = ({ listing, listing_id, userName }) => {
     const money = (listing.offer ? listing.discountedPrice : listing.regularPrice);
     const checkOut = () => {
-        fetch("http://localhost:3500/create-checkout-session", {
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/create-checkout-session`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
