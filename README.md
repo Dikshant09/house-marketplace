@@ -1,4 +1,4 @@
-# House Marketplace
+# House Marketplace : Frontend 
 - It’s a real estate E-commerce website to buy and sell houses. 
 - Here one can add, edit, delete and post a listing in real-time. 
 - React is used as Frontend and Firebase as Backend. 
