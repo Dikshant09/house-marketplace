@@ -5,9 +5,10 @@
 - Using Google Geocoding API to get Coordinates for map plotting
 - Stripe API is used to handle payments. 
 
-<b>Backend : </b>
+**Live Link: <a href="https://house-marketplace-bay.vercel.app/">House Marketplace</a>**
+
+<b>Backend Repo: </b>
 - [Backend Repo](https://github.com/Dikshant09/house-marketplace-backend-stripe-payments) 
-- [Live Link](https://kind-pink-cockroach-veil.cyclic.app/)
 
 ## Requirements
 
